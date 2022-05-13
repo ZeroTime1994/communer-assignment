@@ -1,11 +1,11 @@
 import { LatLngLiteral, LeafletMouseEvent } from 'leaflet';
-import { useState } from 'react';
+import { RootState } from '../store';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import Dialog from '../components/Dialog';
 import Map from '../components/Map';
 import MapProvider from '../components/Map/Provider';
 import SharedLocationForm from '../components/ShareLocationForm';
-import { RootState } from '../store';
 
 const position = {
   lat: 35.68855063531451,

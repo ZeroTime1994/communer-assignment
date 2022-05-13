@@ -1,8 +1,7 @@
-import { useMemo } from 'react';
-import { Popup } from 'react-leaflet';
+import { Container, Content, Header } from './styles';
 import { LocationInfo } from '../../../../store/location/locationSlice';
-import { Button } from '../../../Button';
-import { Container, Content, Footer, Header } from './styles';
+import { Popup } from 'react-leaflet';
+import { useMemo } from 'react';
 
 const MarkerPopup: React.FC<{
   info: LocationInfo;
@@ -12,22 +11,29 @@ const MarkerPopup: React.FC<{
     return URL.createObjectURL(info.logo);
   }, [info.logo]);
 
+  const translationType = () => {
+    switch (info.locationType) {
+      case '1':
+        return 'Business';
+      case '2':
+        return 'Home';
+      case '3':
+        return 'other';
+    }
+  };
+
   return (
-    <Popup>
+    <Popup className="popup-container">
       <Container>
         <Header>
           <h1>Locations Details</h1>
         </Header>
         <Content>
           <div>name: {info.name}</div>
-          <div>locationType: {info.locationType}</div>
+          <div>locationType: {translationType()}</div>
           <div>
             <img height={100} src={imageUrl} />
           </div>
-          <Footer>
-            <Button>Close</Button>
-            <Button primary>Edit</Button>
-          </Footer>
         </Content>
       </Container>
     </Popup>

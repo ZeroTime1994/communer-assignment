@@ -1,6 +1,6 @@
-import { forwardRef } from 'react';
 import { Label } from '../Input/styles';
 import { UploadZone } from './styles';
+import { forwardRef } from 'react';
 
 export interface FileInputProps {
   label?: string;

@@ -1,9 +1,9 @@
 import { QueryClientProvider } from 'react-query';
-import client from './api/client';
 import Home from './pages/Home';
+import client from './api/client';
 
-import { store } from './store';
 import { Provider } from 'react-redux';
+import { store } from './store';
 import GlobalStyles from './styles/global';
 
 const App = () => {

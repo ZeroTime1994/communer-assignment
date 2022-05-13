@@ -1,5 +1,5 @@
-import { forwardRef } from 'react';
 import { Label } from '../Input/styles';
+import { forwardRef } from 'react';
 
 export interface SelectProps {
   label?: string;

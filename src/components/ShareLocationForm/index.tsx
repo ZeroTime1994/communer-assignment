@@ -1,14 +1,15 @@
-import { LatLngExpression, LatLngLiteral } from 'leaflet';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setNewSharedLocation } from '../../store/location/locationSlice';
 import { Button } from '../Button';
+import { Container, Content, Footer, Header, MapContainer, MapContainerInput } from './styles';
+import { LatLngLiteral } from 'leaflet';
+import { setNewSharedLocation } from '../../store/location/locationSlice';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+
 import FileInput from '../FileInput';
 import Input from '../Input';
 import Map from '../Map';
 import Provider from '../Map/Provider';
 import Select from '../Select';
-import { Container, Content, Footer, Header, MapContainer, MapContainerInput } from './styles';
 
 export interface SharedLocationFormProps {
   position?: LatLngLiteral;
@@ -17,7 +18,7 @@ export interface SharedLocationFormProps {
 const SharedLocationForm: React.FC<SharedLocationFormProps> = ({ position, onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
-    locationType: 'Business',
+    locationType: '1',
   });
 
   const [logo, setLogo] = useState<{

@@ -1,11 +1,10 @@
-import { LatLngExpression } from 'leaflet';
-import L from 'leaflet';
-import { Marker as LeafletMarker, Popup } from 'react-leaflet';
-
+import { Marker as LeafletMarker } from 'react-leaflet';
+import L, { LatLngExpression } from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import MarkerPopup from './MarkerPopup';
+
 import { LocationInfo } from '../../../store/location/locationSlice';
+import MarkerPopup from './MarkerPopup';
 
 const DefaultIcon = L.icon({
   iconUrl: icon,

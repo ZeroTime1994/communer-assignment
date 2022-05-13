@@ -4,6 +4,7 @@ import { TileLayer, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useCallback, useEffect } from 'react';
 import Marker from './Marker';
+
 import { LocationInfo } from '../../store/location/locationSlice';
 
 export interface MapProps {
