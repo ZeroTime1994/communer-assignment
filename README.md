@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# Communer Task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is build with create-react-app
+
+# Installation
+
+Just yarn it if you don't have yarn please install it first
+
+### `npm install -g yarn`
+### `yarn`
+
+# Technologies used in this project
+
+### React
+### Redux / Redux/toolkit
+### react-query
+### styled-components
 
 ## Available Scripts
 
