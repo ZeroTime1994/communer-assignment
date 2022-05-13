@@ -1,5 +1,7 @@
-import { LatLngExpression } from 'leaflet';
+import { LatLngExpression, LatLngLiteral } from 'leaflet';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setNewSharedLocation } from '../../store/location/locationSlice';
 import { Button } from '../Button';
 import FileInput from '../FileInput';
 import Input from '../Input';
@@ -9,12 +11,13 @@ import Select from '../Select';
 import { Container, Content, Footer, Header, MapContainer, MapContainerInput } from './styles';
 
 export interface SharedLocationFormProps {
-  position?: LatLngExpression;
+  position?: LatLngLiteral;
+  onClose?: () => void;
 }
-const SharedLocationForm: React.FC<SharedLocationFormProps> = ({ position }) => {
+const SharedLocationForm: React.FC<SharedLocationFormProps> = ({ position, onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
-    locationType: 1,
+    locationType: 'Business',
   });
 
   const [logo, setLogo] = useState<{
@@ -22,6 +25,7 @@ const SharedLocationForm: React.FC<SharedLocationFormProps> = ({ position }) => 
     imageSrc: string;
   }>();
 
+  const [errorMessage, setErrorMessage] = useState<string>();
   const onChangeInputs = (value: string | number, type: 'name' | 'locationType') => {
     setFormData((prevState) => ({ ...prevState, [type]: value }));
   };
@@ -35,6 +39,36 @@ const SharedLocationForm: React.FC<SharedLocationFormProps> = ({ position }) => 
     }
   };
 
+  const dispatch = useDispatch();
+
+  const submitLocation = () => {
+    if (!position) {
+      setErrorMessage('Please select a location on the map');
+      return;
+    }
+    if (!formData.name.trim()) {
+      setErrorMessage('please enter a name');
+      return;
+    }
+    if (!formData.locationType) {
+      setErrorMessage('please select location type');
+      return;
+    }
+    if (!logo?.file) {
+      setErrorMessage('please choose a logo');
+      return;
+    }
+
+    dispatch(
+      setNewSharedLocation({
+        LatLng: position,
+        locationType: formData.locationType,
+        logo: logo.file,
+        name: formData.name,
+      })
+    );
+    onClose?.();
+  };
   return (
     <Container>
       <Header>
@@ -44,6 +78,7 @@ const SharedLocationForm: React.FC<SharedLocationFormProps> = ({ position }) => 
         <div>
           <Input
             value={formData.name}
+            required
             onChange={(e) => onChangeInputs(e.target.value, 'name')}
             label="Location name"
             inputId="locationName"
@@ -79,9 +114,12 @@ const SharedLocationForm: React.FC<SharedLocationFormProps> = ({ position }) => 
           />
           <FileInput src={logo?.imageSrc} onChange={changeFileHandler} label="Logo" />
         </div>
+        <div style={{ color: 'red' }}>{errorMessage && <p>{errorMessage}</p>}</div>
         <Footer>
-          <Button>Cancel</Button>
-          <Button primary>Share</Button>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button onClick={submitLocation} primary>
+            Share
+          </Button>
         </Footer>
       </Content>
     </Container>

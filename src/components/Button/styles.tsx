@@ -8,6 +8,7 @@ export const Button = styled.button<{ primary?: boolean }>`
   border-radius: 3px;
   border: none;
   margin-left: 1rem;
+  cursor: pointer;
 `;
 Button.defaultProps = {
   primary: false,

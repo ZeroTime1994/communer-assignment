@@ -1,4 +1,4 @@
-import { LatLng, LatLngExpression, LeafletMouseEvent } from 'leaflet';
+import { LatLngLiteral, LeafletMouseEvent } from 'leaflet';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Dialog from '../components/Dialog';
@@ -14,7 +14,7 @@ const position = {
 
 const Home = () => {
   // States
-  const [selectedLocation, setSelectedLocation] = useState<LatLngExpression>();
+  const [selectedLocation, setSelectedLocation] = useState<LatLngLiteral>();
   const [showDialogForm, setShowDialogForm] = useState(false);
   // Callbacks
   const mapClickHandler = (e: LeafletMouseEvent) => {
@@ -38,7 +38,10 @@ const Home = () => {
       </div>
       {showDialogForm && (
         <Dialog>
-          <SharedLocationForm position={selectedLocation} />
+          <SharedLocationForm
+            onClose={() => setShowDialogForm(false)}
+            position={selectedLocation}
+          />
         </Dialog>
       )}
     </>

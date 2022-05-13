@@ -51,7 +51,9 @@ const Map: React.FC<MapProps> = ({
       {selectedLocation && <Marker position={selectedLocation} />}
       {sharedLocations &&
         sharedLocations.length > 0 &&
-        sharedLocations.map((location, index) => <Marker key={index} position={location.LatLng} />)}
+        sharedLocations.map((location, index) => (
+          <Marker key={index} position={location.LatLng} info={location} />
+        ))}
     </>
   );
 };

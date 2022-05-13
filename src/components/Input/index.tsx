@@ -8,14 +8,23 @@ export interface InputProps {
   name?: string;
   inputId?: string;
   type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
+  required?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, onChange, value, name, inputId, type }, ref) => {
+  ({ label, onChange, value, name, inputId, type, required }, ref) => {
     return (
       <Label>
         <span> {label}:</span>
-        <input ref={ref} value={value} onChange={onChange} type={type} name={name} id={inputId} />
+        <input
+          required={required}
+          ref={ref}
+          value={value}
+          onChange={onChange}
+          type={type}
+          name={name}
+          id={inputId}
+        />
       </Label>
     );
   }

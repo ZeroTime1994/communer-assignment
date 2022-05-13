@@ -1,4 +1,4 @@
-import { LatLngExpression } from 'leaflet';
+import { LatLngExpression, LatLngLiteral } from 'leaflet';
 // eslint-disable-next-line import/named
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../index';
@@ -6,7 +6,7 @@ import type { RootState } from '../index';
 // Define a type for the slice state
 
 export interface LocationInfo {
-  LatLng: LatLngExpression;
+  LatLng: LatLngLiteral;
   name: string;
   locationType: string;
   logo: File | undefined;
